@@ -1,7 +1,28 @@
-[gd_scene format=3 uid="uid://cwkxohm37urjd"]
+[gd_scene load_steps=4 format=3 uid="uid://dtmoftbvto73d"]
+
+[ext_resource type="PackedScene" uid="uid://bg0is3pbfcx3h" path="res://Cabin.tscn" id="1_uvllw"]
+
+[sub_resource type="Environment" id="Environment_yapeb"]
+
+[sub_resource type="VoxelGIData" id="VoxelGIData_b4ea8"]
 
 [node name="World" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yapeb")
+
 [node name="Marker3D" type="Marker3D" parent="."]
 
+[node name="Cabin" parent="Marker3D" instance=ExtResource("1_uvllw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
+
 [node name="Pivot" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="Pivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 5)
+current = true
+
+[node name="VoxelGI" type="VoxelGI" parent="."]
+visible = false
+size = Vector3(30, 30, 30)
+data = SubResource("VoxelGIData_b4ea8")
